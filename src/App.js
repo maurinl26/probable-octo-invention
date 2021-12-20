@@ -1,5 +1,4 @@
-import styles from './App.modules.css';
-import { Routes, Route, Link, Outlet } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Charts from './components/Charts';
 import Tables from './components/Tables';
