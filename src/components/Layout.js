@@ -4,8 +4,8 @@ import { Link, Outlet } from 'react-router-dom';
 
 export default function Layout() {
     return (
-        <div className={styles.layout}>
-            <div className={styles.nav}>
+        <div>
+            <div>
             <nav>
           <ul>
             <li>
@@ -24,7 +24,7 @@ export default function Layout() {
           </nav>
         </div>
   
-        <div className={styles.outlet}>
+        <div>
           <h1>Connection + Search bar </h1>
           <Outlet />
         </div>

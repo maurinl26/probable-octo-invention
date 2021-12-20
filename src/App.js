@@ -7,7 +7,7 @@ import Layout from './components/Layout';
 
 export default function App() {
   return (
-    <div className={styles.App}>
+    <div>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="home" element={<Home />}></Route>
