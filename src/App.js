@@ -1,5 +1,5 @@
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Drawer, Typography } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Drawer, Typography, List, ListItem, Divider } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import Home from './components/Home';
@@ -44,30 +44,24 @@ function Layout() {
         </Toolbar>
       </AppBar>
       <Drawer variant='permanent' open={open}>
-
-      </Drawer>
-          <div>
-          <nav>
-        <ul>
-          <li>
+        <Divider />
+        <List>
+          <ListItem>
             <Link to="/home">Home</Link>
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
             <Link to="/charts">Charts</Link>
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
             <Link to="/tables">Table</Link>
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
             <Link to="/map">Map</Link>
-          </li>
-        </ul>
-        </nav>
-      </div>
-
-      <div>
-        <Outlet />
-      </div>
+          </ListItem>
+        </List>
+      </Drawer>
+          
+      <Outlet />
     </div>
   );
 }
