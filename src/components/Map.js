@@ -1,6 +1,5 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import styles from './Map.modules.css';
 
 
 export default function Map() {
