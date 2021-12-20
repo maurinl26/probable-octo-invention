@@ -1,9 +1,0 @@
-.App {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  text-align: left;
-}
-
-.App-link {
-  color: #61dafb;
-}
