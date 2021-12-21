@@ -12,7 +12,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { styled, useTheme } from '@mui/material';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -83,12 +83,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 function ListItemLink(props) {
     const { icon, primary, to, text } = props;
     const CustomLink = (props) => <Link to={to} {...props} />;
+
+    const SListItemText = styled(ListItemText)({
+        flexDirection: 1,
+        marginInline: '5px',
+    });
   
     return (
       <li>
         <ListItem button component={CustomLink}>
             <ListItemIcon>{icon}</ListItemIcon>
-            <ListItemText primary={primary}>{text}</ListItemText>
+            <SListItemText primary={primary}>{text}</SListItemText>
         </ListItem>
       </li>
     );
@@ -140,10 +145,10 @@ export default function Layout() {
           
           <Divider />
           <List>
-            <ListItemLink icon={<HomeIcon />} to="/home" text="Home" /> 
-            <ListItemLink icon={<BarChartIcon />} to="/charts" text="Charts"/> 
-            <ListItemLink icon={<TableChartIcon />} to="/tables" text="Tables" />
-            <ListItemLink icon={<MapIcon />} to="/map" text="Map"/>        
+            <ListItemLink icon={<HomeIcon sx={{fontSize:40}} />} to="/home" text="Home" /> 
+            <ListItemLink icon={<BarChartIcon sx={{fontSize:40}}/>} to="/charts" text="Charts"/> 
+            <ListItemLink icon={<TableChartIcon sx={{fontSize:40}}/>} to="/tables" text="Tables" />
+            <ListItemLink icon={<MapIcon sx={{fontSize:40}}/>} to="/map" text="Map"/>        
           </List>
         </Drawer>
             
