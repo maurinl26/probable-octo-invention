@@ -6,8 +6,10 @@ import Home from './components/Home';
 import Charts from './components/Charts';
 import Tables from './components/Tables';
 import Map from './components/Map';
+import Login from './components/Login';
 
 export default function App() {
+  
   return (
     <div>
       <Routes>
