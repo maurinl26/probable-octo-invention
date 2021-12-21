@@ -1,7 +1,8 @@
 import React from 'react';
+import { Typography } from '@mui/material';
 
 export default function Tables() {
     return (
-      <div>Bientôt des tableaux</div>
+      <Typography>Bientôt des tableaux</Typography>
     );
   }

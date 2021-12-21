@@ -1,7 +1,10 @@
+import { Typography } from "@mui/material";
 import React from "react";
 
 export default function Charts() {
     return (
-      <div>Bientôt des graphiques</div>
+      <Typography>
+        Bientôt des graphiques
+      </Typography>
     );
   }
