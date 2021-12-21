@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Toolbar, IconButton, Typography, List, ListItem, Divider, ListItemIcon, ListItemText } from '@mui/material';
+import { Box } from '@mui/system';
 import MuiAppBar from '@mui/material/AppBar';
 import MuiDrawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -113,7 +114,7 @@ export default function Layout() {
     };
   
     return (
-      <div>
+      <Box sx={{ display: 'flex'}}>
         <AppBar position="fixed" open={open}>
           <Toolbar>
             <IconButton
@@ -151,8 +152,13 @@ export default function Layout() {
             <ListItemLink icon={<MapIcon sx={{fontSize:40}}/>} to="/map" text="Map"/>        
           </List>
         </Drawer>
-            
-        <Outlet />
-      </div>
+        
+        <Box sx={{ flexGrow: 1, p: 1 }}>
+            <DrawerHeader />
+            <Outlet />      
+        </Box>
+        
+  
+      </Box>
     );
   }

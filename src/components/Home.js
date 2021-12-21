@@ -1,9 +1,10 @@
+import { Typography } from '@mui/material';
 import React from 'react';
 
 export default function Home() {
     return (
-        <div>
+        <Typography>
           Bonjour, voici la page d'accueil
-        </div>
+        </Typography>
       );
 }
