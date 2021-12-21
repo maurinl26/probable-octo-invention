@@ -87,7 +87,7 @@ function ListItemLink(props) {
     return (
       <li>
         <ListItem button component={CustomLink}>
-            <SListItemIcon>{icon}</SListItemIcon>
+            <ListItemIcon>{icon}</ListItemIcon>
             <ListItemText primary={primary}>{text}</ListItemText>
         </ListItem>
       </li>
