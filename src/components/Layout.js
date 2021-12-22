@@ -113,8 +113,8 @@ export default function Layout() {
       setOpen(false);
     };
   
-    return (
-      <Box sx={{ display: 'flex'}}>
+  return (
+        <Box sx={{ display: 'flex'}}>
         <AppBar position="fixed" open={open}>
           <Toolbar>
             <IconButton

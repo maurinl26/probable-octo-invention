@@ -2,7 +2,8 @@ import React from 'react';
 import { Typography } from '@mui/material';
 
 export default function Tables() {
+  
     return (
-      <Typography>Bientôt des tableaux</Typography>
+      <Typography variant='h5'>Bientôt des tableaux</Typography>
     );
   }
