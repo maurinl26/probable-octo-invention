@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { Box, CardHeader, Typography, useTheme, Card } from "@mui/material";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/system';
 
 import L from 'leaflet/dist/leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Search } from '@mui/icons-material';
 
 export default function Map() {
     const theme = useTheme();
