@@ -41,7 +41,7 @@ const PieChart = (props) => {
   return (
     <Plot
       data={data}
-      layout={{ width: '30vh', height: '20vh', title: 'Favourite Colours In A Class' }} />
+      layout={{ width: '13vh', height: '20vh', title: 'Favourite Colours In A Class' }} />
   )
 }
 
@@ -64,6 +64,6 @@ const GroupedBarChart = (props) => {
   return (
     <Plot
       data={data}
-      layout={{ width: '30vh', height: '20vh', title: 'Electronics Prices 2016/2017' }} />
+      layout={{ width: '13vh', height: '20vh', title: 'Electronics Prices 2016/2017' }} />
   )
 }
