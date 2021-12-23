@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, CardHeader, Typography, useTheme, Card } from "@mui/material";
+import { Box, Typography, useTheme, Card } from "@mui/material";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { styled } from '@mui/system';
 
@@ -24,10 +24,7 @@ export default function Map() {
     return (
         <SBox>
             <Typography variant='h5'> Voici la carte </Typography>
-            <Card>
-                <CardHeader>
-                    <Typography variant='h5'>Carte du Monde</Typography>
-                </CardHeader>
+            <Card elevation={5}>
             <SMapContainer center={position} zoom={13} scrollWheelZoom={false} sx={{position:'relative'}}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
 
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ flexWrap: 'wrap'}}>
       <Grid item xs={12}>
         <Typography variant='h5'>
           Bonjour, voici la page d'accueil
