@@ -1,30 +1,16 @@
 import * as React from 'react';
 import MuiAppBar from '@mui/material/AppBar';
-import { Avatar, IconButton, MenuItem, Toolbar, Tooltip, Typography, useTheme } from '@mui/material';
-import { Menu } from '@mui/material';
+import { Avatar, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import LoginIcon from '@mui/icons-material/Login';
 
-import { useMsal, useIsAuthenticated } from "@azure/msal-react";
-import { loginRequest } from "../authConfig";
+import { useIsAuthenticated } from "@azure/msal-react";
+
+import SignInMenu from './SignInMenu';
+import SignOutMenu from './SignOutMenu';
 
 
 export default function PageLayout(props) {
     const isAuthenticated = useIsAuthenticated();
-
-    const { instance } = useMsal();
-
-    const handleLogin = (loginType) => {
-        if (loginType === "popup") {
-            instance.loginPopup(loginRequest).catch(e => {
-                console.log(e);
-            });
-        } else if (loginType === "redirect") {
-            instance.loginRedirect(loginRequest).catch(e => {
-                console.log(e);
-            });
-        }
-    }
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -48,21 +34,9 @@ export default function PageLayout(props) {
                             <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
                         </IconButton>
                     </Tooltip>
-                    <Menu
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClick={handleClose}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={() => handleLogin("popup")}>
-                            <LoginIcon />
-                            Sign in with popup
-                        </MenuItem>
-                        <MenuItem onClick={() => handleLogin("redirect")}>
-                            <LoginIcon />
-                            Sign in with redirect
-                        </MenuItem>
-                    </Menu>
+                    {isAuthenticated ?
+                        <SignOutMenu anchorEl={anchorEl} open={open} handleClose={handleClose} />
+                        : <SignInMenu anchorEl={anchorEl} open={open} handleClose={handleClose} />}
                 </Toolbar>
             </MuiAppBar>
         </>
