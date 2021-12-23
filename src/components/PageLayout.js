@@ -3,7 +3,7 @@ import MuiAppBar from '@mui/material/AppBar';
 import { Avatar, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
+import { useIsAuthenticated } from "@azure/msal-react";
 
 import SignInMenu from './SignInMenu';
 import SignOutMenu from './SignOutMenu';
