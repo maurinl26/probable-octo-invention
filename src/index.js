@@ -1,21 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { PublicClientApplication } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
+import { msalConfig } from "./authConfig";
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const msalInstance = new PublicClientApplication(msalConfig);
+
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <MsalProvider instance={msalInstance}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </MsalProvider>
+
   </React.StrictMode>,
+
   document.getElementById('root')
 );
 
-if(module.hot){
+if (module.hot) {
   module.hot.accept()
 }
 

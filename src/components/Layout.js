@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Toolbar, IconButton, Typography, List, ListItem, Divider, ListItemIcon, ListItemText } from '@mui/material';
+import { Toolbar, IconButton, Typography, List, ListItem, Divider, ListItemIcon, ListItemText, Avatar, Tooltip } from '@mui/material';
 import { Box } from '@mui/system';
 import MuiAppBar from '@mui/material/AppBar';
 import MuiDrawer from '@mui/material/Drawer';
@@ -12,6 +12,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { styled, useTheme } from '@mui/material';
+import SignOutMenu from './SignOutMenu';
+import SignInMenu from './SignInMenu';
+import { useIsAuthenticated } from '@azure/msal-react';
 
 const drawerWidth = 200;
 
@@ -40,8 +43,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-  
+  padding: theme.spacing(0, 1),
+
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
@@ -82,83 +85,106 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 function ListItemLink(props) {
-    const { icon, primary, to, text } = props;
-    const CustomLink = (props) => <Link to={to} {...props} />;
+  const { icon, primary, to, text } = props;
+  const CustomLink = (props) => <Link to={to} {...props} />;
 
-    const SListItemText = styled(ListItemText)({
-        flexDirection: 1,
-        marginInline: '5px',
-    });
-  
-    return (
-      <li>
-        <ListItem button component={CustomLink}>
-            <ListItemIcon>{icon}</ListItemIcon>
-            <SListItemText primary={primary}>{text}</SListItemText>
-        </ListItem>
-      </li>
-    );
-  }
+  const SListItemText = styled(ListItemText)({
+    flexDirection: 1,
+    marginInline: '5px',
+  });
+
+  return (
+    <li>
+      <ListItem button component={CustomLink}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <SListItemText primary={primary}>{text}</SListItemText>
+      </ListItem>
+    </li>
+  );
+}
 
 // Page Layout
 export default function Layout() {
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
-  
-    const handleDrawerOpen = () => {
-      setOpen(true);
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  // Signin 
+  const isAuthenticated = useIsAuthenticated();
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const opened = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
     };
-  
-    const handleDrawerClose = () => {
-      setOpen(false);
+    const handleClose = () => {
+        setAnchorEl(null);
     };
-  
+
   return (
-        <Box sx={{ display: 'flex'}}>
-        <AppBar position="fixed" open={open}>
-          <Toolbar>
-            <IconButton
-                size="large"
-                color="inherit"
-                aria-label="menu"
-                onClick={handleDrawerOpen}
-                edge="start"
-                sx={{
-                    marginRight: '30px',
-                    ...(open && { display: 'none' }),
-                }}        
-            >
+    <Box sx={{ display: 'flex' }}>
+      <AppBar position="fixed" open={open}>
+        <Toolbar>
+          <IconButton
+            size="large"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{
+              marginRight: '30px',
+              ...(open && { display: 'none' }),
+            }}
+          >
             <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Sample PWA
+          </Typography>
+
+          {/* Signin Menu */}
+          <Tooltip title="Account settings">
+            <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+              <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Sample PWA
-            </Typography>
-          </Toolbar>
-        </AppBar>
-  
-            <Drawer variant='permanent' open={open}>
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
-                </DrawerHeader>
-            
+          </Tooltip>
+          {isAuthenticated ?
+            <SignOutMenu anchorEl={anchorEl} open={opened} handleClose={handleClose} />
+            : <SignInMenu anchorEl={anchorEl} open={opened} handleClose={handleClose} />}
           
-          <Divider />
-          <List>
-            <ListItemLink icon={<HomeIcon sx={{fontSize:40}} />} to="/home" text="Home" /> 
-            <ListItemLink icon={<BarChartIcon sx={{fontSize:40}}/>} to="/charts" text="Charts"/> 
-            <ListItemLink icon={<TableChartIcon sx={{fontSize:40}}/>} to="/tables" text="Tables" />
-            <ListItemLink icon={<MapIcon sx={{fontSize:40}}/>} to="/map" text="Map"/>        
-          </List>
-        </Drawer>
-        
-        <Box sx={{ flexGrow: 1, p: 1 }}>
-            <DrawerHeader />
-            <Outlet />      
-        </Box>
-        
-  
+        </Toolbar>
+      </AppBar>
+
+      <Drawer variant='permanent' open={open}>
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </DrawerHeader>
+
+
+        <Divider />
+        <List>
+          <ListItemLink icon={<HomeIcon sx={{ fontSize: 40 }} />} to="/home" text="Home" />
+          <ListItemLink icon={<BarChartIcon sx={{ fontSize: 40 }} />} to="/charts" text="Charts" />
+          <ListItemLink icon={<TableChartIcon sx={{ fontSize: 40 }} />} to="/tables" text="Tables" />
+          <ListItemLink icon={<MapIcon sx={{ fontSize: 40 }} />} to="/map" text="Map" />
+        </List>
+      </Drawer>
+
+      <Box sx={{ flexGrow: 1, p: 1 }}>
+        <DrawerHeader />
+        <Outlet />
       </Box>
-    );
-  }
+
+
+    </Box>
+  );
+}
