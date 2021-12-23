@@ -3,11 +3,10 @@ import MuiAppBar from '@mui/material/AppBar';
 import { Avatar, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { useIsAuthenticated } from "@azure/msal-react";
+import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 
 import SignInMenu from './SignInMenu';
 import SignOutMenu from './SignOutMenu';
-
 
 export default function PageLayout(props) {
     const isAuthenticated = useIsAuthenticated();
@@ -39,6 +38,7 @@ export default function PageLayout(props) {
                         : <SignInMenu anchorEl={anchorEl} open={open} handleClose={handleClose} />}
                 </Toolbar>
             </MuiAppBar>
+            {props.children}
         </>
     )
 }
