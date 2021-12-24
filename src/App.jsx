@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Home from './components/Home';
 import Charts from './components/Charts';
-import Tables from './components/Tables';
+import TablePage from './components/Tables';
 import Map from './components/Map';
 import PageLayout from './components/PageLayout';
 import Layout from './components/Layout';
@@ -14,12 +14,14 @@ export default function App() {
   return (
     <div>
       <PageLayout>
+
         <AuthenticatedTemplate>
           <Routes>
             <Route path="/" element={<Layout />}>
+              <Route index element={<Home />}></Route>
               <Route path="home" element={<Home />}></Route>
               <Route path="charts" element={<Charts />}></Route>
-              <Route path="tables" element={<Tables />}></Route>
+              <Route path="tables" element={<TablePage />}></Route>
               <Route path="map" element={<Map />}></Route>
             </Route>
           </Routes>

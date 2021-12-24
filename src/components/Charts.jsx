@@ -1,35 +1,42 @@
 import * as React from 'react';
-import { Grid, Card, Typography } from "@mui/material";
+import { Grid, Typography, Paper } from "@mui/material";
 import Plot from 'react-plotly.js';
 
 export default function Charts() {
 
 
   return (
-    <Grid container spacing={2}>
+    <Grid
+      container
+      direction="row"
+      justifyContent="flex-start"
+      alignItems="flex-start"
+      gridTemplateColumns="repeat(2, 1fr)"
+      spacing={2}
+    >
       <Grid item xs={12}>
         <Typography variant='h5'>
           Quelques graphes
         </Typography>
       </Grid>
 
-      <Grid item xs={6}>
-        <Card elevation={3} sx={{ height: '50vh', alignItems: 'left' }}>
+      <Grid item>
+        <Paper elevation={6} sx={{ height: '50vh', minWidth: 200}}>
           <PieChart />
-        </Card>
+        </Paper>
       </Grid>
 
-      <Grid item xs={6}>
-        <Card elevation={3} sx={{ height: '50vh', alignItems: 'left' }}>
+      <Grid item>
+        <Paper elevation={6} sx={{ height: '50vh', minWidth: 200 }}>
           <GroupedBarChart />
-        </Card>
+        </Paper>
       </Grid>
 
     </Grid>
   );
 }
 
-const PieChart = (props) => {
+const PieChart = () => {
   var data = [
     {
       values: [112, 454, 65, 544],
@@ -41,11 +48,13 @@ const PieChart = (props) => {
   return (
     <Plot
       data={data}
-      layout={{ width: '13vh', height: '20vh', title: 'Favourite Colours In A Class' }} />
+      layout={{ autosize:true, title: 'Favourite Colours In A Class' }}
+      useResizeHandler
+    />
   )
 }
 
-const GroupedBarChart = (props) => {
+const GroupedBarChart = () => {
   var plot1 = {
     x: ["Microwave", "Washing Machine", "Tv", "Vacuum Cleaner", "Hair Dryer"],
     y: [4, 5, 6, 1, 4],
@@ -64,6 +73,8 @@ const GroupedBarChart = (props) => {
   return (
     <Plot
       data={data}
-      layout={{ width: '13vh', height: '20vh', title: 'Electronics Prices 2016/2017' }} />
+      layout={{ autosize:true, title: 'Electronics Prices 2016/2017' }}
+      useResizeHandler
+    />
   )
 }
