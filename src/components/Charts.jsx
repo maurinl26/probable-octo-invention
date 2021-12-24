@@ -6,21 +6,28 @@ export default function Charts() {
 
 
   return (
-    <Grid container spacing={2}>
+    <Grid
+      container
+      direction="row"
+      justifyContent="flex-start"
+      alignItems="flex-start"
+      gridTemplateColumns="repeat(2, 1fr)"
+      spacing={2}
+    >
       <Grid item xs={12}>
         <Typography variant='h5'>
           Quelques graphes
         </Typography>
       </Grid>
 
-      <Grid item xs={6}>
-        <Card elevation={3} sx={{ height: '50vh', alignItems: 'left' }}>
+      <Grid item>
+        <Card elevation={3} sx={{ height: '50vh', width: '40%'}}>
           <PieChart />
         </Card>
       </Grid>
 
-      <Grid item xs={6}>
-        <Card elevation={3} sx={{ height: '50vh', alignItems: 'left' }}>
+      <Grid item>
+        <Card elevation={3} sx={{ height: '50vh', width:'40%' }}>
           <GroupedBarChart />
         </Card>
       </Grid>
@@ -41,7 +48,7 @@ const PieChart = (props) => {
   return (
     <Plot
       data={data}
-      layout={{ width: '13vh', height: '20vh', title: 'Favourite Colours In A Class' }} />
+      layout={{ width: '20%', height: '20vh', title: 'Favourite Colours In A Class' }} />
   )
 }
 
@@ -64,6 +71,6 @@ const GroupedBarChart = (props) => {
   return (
     <Plot
       data={data}
-      layout={{ width: '13vh', height: '20vh', title: 'Electronics Prices 2016/2017' }} />
+      layout={{ width: '20%', height: '20vh', title: 'Electronics Prices 2016/2017' }} />
   )
 }

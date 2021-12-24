@@ -1,7 +1,6 @@
 import * as React from 'react';
 import MuiAppBar from '@mui/material/AppBar';
 import { Avatar, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 
 import { useIsAuthenticated } from "@azure/msal-react";
 
@@ -24,7 +23,6 @@ export default function PageLayout(props) {
         <>
             <MuiAppBar position="fixed" open={open}>
                 <Toolbar>
-                    <MenuIcon />
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Sample PWA
                     </Typography>
