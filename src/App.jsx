@@ -14,10 +14,11 @@ export default function App() {
   return (
     <div>
       <PageLayout>
-        
+
         <AuthenticatedTemplate>
           <Routes>
             <Route path="/" element={<Layout />}>
+              <Route index element={<Home />}></Route>
               <Route path="home" element={<Home />}></Route>
               <Route path="charts" element={<Charts />}></Route>
               <Route path="tables" element={<Tables />}></Route>
