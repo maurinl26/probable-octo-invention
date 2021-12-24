@@ -14,6 +14,7 @@ export default function App() {
   return (
     <div>
       <PageLayout>
+        
         <AuthenticatedTemplate>
           <Routes>
             <Route path="/" element={<Layout />}>
